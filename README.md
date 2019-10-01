@@ -50,3 +50,20 @@ curl -kL http://127.0.0.1/practical
 
 
 ## Monitoring
+
+For monitoring, we again leverage microk8s add-ons. There are two add-ons to enable, namely dashboard and prometheus. We run the below.
+
+```
+microk8s.enable dashboard
+microk8s.enable prometheus
+```
+This will create a few deployments under the monitoring namespace. Once that has settled you can verify that grafana is up and running as follows
+
+```
+kubectl cluster-info
+```
+I then port-foward on the grafana service, as below.
+```
+kubectl port-forward services/grafana 3001:3000 -n monitoring
+```
+From here, I can log in to grafana on the browser with the default credentials where I can do some monitoring uby selecting sing prometheus as a data source.
