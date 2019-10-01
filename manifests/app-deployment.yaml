@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: practical
+  labels:
+    app: practical
+spec:
+  selector:
+    matchLabels:
+      app: practical
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: practical
+    spec:
+      containers:
+        - name: practical
+          image: docker.io/hlanganani/practical:latest
+          ports:
+              - containerPort: 3000
