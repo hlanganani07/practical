@@ -67,3 +67,26 @@ I then port-foward on the grafana service, as below.
 kubectl port-forward services/grafana 3001:3000 -n monitoring
 ```
 From here, I can log in to grafana on the browser at http://localhost:3001 using the default credentials where I can do some monitoring by selecting prometheus as a data source.
+
+
+## Monitoring, using helm charts
+
+We can accomplish the above by using helm charts instead of microk8s add-ons. To installl Prometheus in our cluster, under the monitoring namespace, we run the following. 
+
+```
+helm install stable/prometheus --name prometheus --namespace monitoring
+```
+
+To installl Grafana in our cluster, under the monitoring namespace, we run the following.
+
+```
+helm install stable/grafana --name grafana --namespace monitoring
+```
+
+We can obtain our grafana password by viewing the following command issued to us.
+
+```
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+From here, I can port-forward on the grafana pod and log in to grafana on the browser at http://localhost:3001 using the obtained credentials where I can do some monitoring by selecting prometheus as a data source.
