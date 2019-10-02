@@ -66,4 +66,4 @@ I then port-foward on the grafana service, as below.
 ```
 kubectl port-forward services/grafana 3001:3000 -n monitoring
 ```
-From here, I can log in to grafana on the browser with the default credentials where I can do some monitoring uby selecting sing prometheus as a data source.
+From here, I can log in to grafana on the browser at http://localhost:3001 using the default credentials where I can do some monitoring by selecting prometheus as a data source.
